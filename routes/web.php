@@ -23,3 +23,6 @@ Route::get('/', function () {
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
+
+Route::get('/login', [AutheticationController::class, 'login'])->name('login.form');
+Route::post('/login', [AutheticationController::class, 'logar'])->name('login');
