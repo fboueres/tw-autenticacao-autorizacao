@@ -19,7 +19,7 @@ class AuthenticationController extends Controller
             'password' => ['required']
         ]);
 
-        if (Auth::attempt($dados)) {
+        if (Auth::attempt($dados, $request->filled('remember'))) {
             $request->session()->regenerate();
 
             return redirect()->intended('home');
