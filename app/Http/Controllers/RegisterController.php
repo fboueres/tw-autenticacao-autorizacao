@@ -18,6 +18,12 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
+    /**
+     * Realiza a criação do usuário no banco de dados
+     *
+     * @param Request $request
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -29,6 +35,8 @@ class RegisterController extends Controller
         $dados = $request->only(['name', 'email', 'password']);
         $dados['password'] = Hash::make($dados['password']);
 
-        return User::create($dados);
+        User::create($dados);
+
+        return redirect()->route('home');
     }
 }

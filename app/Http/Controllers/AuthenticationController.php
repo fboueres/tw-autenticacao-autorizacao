@@ -5,13 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticationController extends Controller
+class AutheticationController extends Controller
 {
+    /**
+     * Mostra o formulário de login
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     */
     public function login()
     {
         return view('auth.login');
     }
 
+    /**
+     * Realiza login com os dados enviados
+     *
+     * @param Request $request
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     */
     public function logar(Request $request)
     {
         $dados = $request->validate([
@@ -29,7 +40,13 @@ class AuthenticationController extends Controller
             'email' => 'O email e/ou senha não são invalidos'
         ]);
     }
-    
+
+    /**
+     * Realiza logout do usuário
+     *
+     * @param Request $request
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     */
     public function logout(Request $request)
     {
         Auth::logout();
