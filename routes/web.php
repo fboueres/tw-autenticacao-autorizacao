@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', HomePage::class)->name('home');
     Route::post('/logout', [AutheticationController::class, 'logout'])->name('logout');
+    Route::resource('posts', PostsController::class);
 });
 
 Route::get('/', function () {
