@@ -86,7 +86,7 @@ class PostsController extends Controller
         $gateResponse = Gate::inspect('update-post');
         
         if (!$gateResponse->allowed()) {
-            abort(403);
+            abort(403, $gateResponse->message());
         }
 
         $post = Post::findOrFail($id);
